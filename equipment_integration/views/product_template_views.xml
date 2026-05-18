@@ -16,6 +16,7 @@
                            options="{'no_create': True}"/>
                 </xpath>
                 <xpath expr="//field[@name='equipment_id']" position="after">
+                    <field name="show_create_equipment_btn" invisible="1"/>
                     <button name="action_create_equipment" 
                             string="Create Equipment" 
                             type="object" 
