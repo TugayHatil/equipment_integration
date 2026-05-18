@@ -5,17 +5,17 @@
     'category': 'Maintenance',
     'summary': 'Integrate products with equipment management and invoice tracking',
     'description': """
-        Equipment Integration Addon
-        ===========================
-        
-        This addon provides seamless integration between products and equipment:
-        
-        * Mark products as equipment with boolean field
-        * Link products to maintenance equipment records
-        * Create equipment directly from product interface
-        * Track equipment-related invoices through product connections
-        * Smart buttons for quick access to related data
-        * Automated equipment naming from product names
+Equipment Integration Addon
+==========================
+
+This addon provides seamless integration between products and equipment:
+
+* Mark products as equipment with boolean field
+* Link products to maintenance equipment records
+* Create equipment directly from product interface
+* Track equipment-related invoices through product connections
+* Smart buttons for quick access to related data
+* Automated equipment naming from product names
     """,
     'author': 'Equipment Integration Team',
     'website': 'https://github.com/TugayHatil',
