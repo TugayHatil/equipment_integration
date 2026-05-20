@@ -18,7 +18,7 @@ class MaintenanceEquipment(models.Model):
     invoice_count = fields.Integer(
         string='Invoice Count',
         compute='_compute_invoice_count',
-        store=True
+        store=False
     )
 
     @api.depends('product_ids')
