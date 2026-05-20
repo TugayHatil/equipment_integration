@@ -52,8 +52,26 @@ class EquipmentCreationWizard(models.TransientModel):
         # Link equipment to product
         self.product_id.equipment_id = equipment.id
         
-        # Close wizard immediately - the equipment creation itself is the feedback
-        return {'type': 'ir.actions.act_window_close'}
+        # Create a simple notification using environment
+        notification = {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Equipment Created',
+                'message': f'Equipment "{equipment.name}" has been created and linked to the product.',
+                'type': 'success',
+                'sticky': False,
+            }
+        }
+        
+        # Return both notification and close action
+        return {
+            'type': 'ir.actions.multi',
+            'actions': [
+                notification,
+                {'type': 'ir.actions.act_window_close'}
+            ]
+        }
 
     def action_cancel(self):
         """Cancel equipment creation"""
