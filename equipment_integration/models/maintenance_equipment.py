@@ -34,7 +34,7 @@ class MaintenanceEquipment(models.Model):
             product_variant_ids = equipment.product_ids.mapped('product_variant_ids').ids
             invoice_lines = self.env['account.move.line'].search([
                 ('product_id', 'in', product_variant_ids),
-                ('move_id.move_type', '=', 'out_invoice'),
+                ('move_id.move_type', 'in', ['out_invoice', 'in_invoice']),
                 ('move_id.state', 'in', ['posted', 'in_payment'])
             ])
             invoices = invoice_lines.mapped('move_id')
@@ -61,7 +61,7 @@ class MaintenanceEquipment(models.Model):
         product_variant_ids = self.product_ids.mapped('product_variant_ids').ids
         invoice_lines = self.env['account.move.line'].search([
             ('product_id', 'in', product_variant_ids),
-            ('move_id.move_type', '=', 'out_invoice'),
+            ('move_id.move_type', 'in', ['out_invoice', 'in_invoice']),
             ('move_id.state', 'in', ['posted', 'in_payment'])
         ])
         invoices = invoice_lines.mapped('move_id')
@@ -72,5 +72,5 @@ class MaintenanceEquipment(models.Model):
             'res_model': 'account.move',
             'view_mode': 'tree,form',
             'domain': [('id', 'in', invoices.ids)],
-            'context': {'default_move_type': 'out_invoice'},
+            'context': {},
         }
