@@ -52,7 +52,7 @@ class EquipmentCreationWizard(models.TransientModel):
         # Link equipment to product
         self.product_id.equipment_id = equipment.id
         
-        # Show success message
+        # Show success message and close wizard
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
@@ -61,6 +61,9 @@ class EquipmentCreationWizard(models.TransientModel):
                 'message': f'Equipment "{equipment.name}" has been created and linked to the product.',
                 'type': 'success',
                 'sticky': False,
+            },
+            'next': {
+                'type': 'ir.actions.act_window_close',
             }
         }
 
