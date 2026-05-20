@@ -52,20 +52,21 @@ class EquipmentCreationWizard(models.TransientModel):
         # Link equipment to product
         self.product_id.equipment_id = equipment.id
         
-        # Show success message and close wizard
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
+        # Show success message first, then close wizard
+        self.env['bus']._sendone(
+            self.env.user.partner_id, 
+            'ir.notification', 
+            {
+                'type': 'ir.announcement',
                 'title': 'Equipment Created',
                 'message': f'Equipment "{equipment.name}" has been created and linked to the product.',
                 'type': 'success',
                 'sticky': False,
-            },
-            'next': {
-                'type': 'ir.actions.act_window_close',
             }
-        }
+        )
+        
+        # Close wizard
+        return {'type': 'ir.actions.act_window_close'}
 
     def action_cancel(self):
         """Cancel equipment creation"""
