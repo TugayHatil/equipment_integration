@@ -10,19 +10,24 @@
                 <xpath expr="//field[@name='sale_ok']" position="after">
                     <field name="is_equipment" widget="boolean_toggle"/>
                 </xpath>
-                <xpath expr="//field[@name='is_equipment']" position="after">
-                    <field name="equipment_id" 
-                           attrs="{'invisible': [('is_equipment', '=', False)], 'required': [('is_equipment', '=', True)]}"
-                           options="{'no_create': True}"/>
-                </xpath>
-                <xpath expr="//field[@name='equipment_id']" position="after">
-                    <field name="show_create_equipment_btn" invisible="1"/>
-                    <button name="action_create_equipment" 
-                            string="Create Equipment" 
-                            type="object" 
-                            class="oe_highlight btn-sm"
-                            attrs="{'invisible': [('show_create_equipment_btn', '=', False)]}"
-                            icon="fa-plus"/>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Equipment" attrs="{'invisible': [('is_equipment', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="equipment_id" 
+                                       options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="show_create_equipment_btn" invisible="1"/>
+                                <button name="action_create_equipment" 
+                                        string="Create Equipment" 
+                                        type="object" 
+                                        class="oe_highlight"
+                                        attrs="{'invisible': [('show_create_equipment_btn', '=', False)]}"
+                                        icon="fa-plus"/>
+                            </group>
+                        </group>
+                    </page>
                 </xpath>
             </field>
         </record>
