@@ -26,6 +26,7 @@ This addon provides seamless integration between products and equipment:
         'account',
     ],
     'data': [
+        'security/security.xml',
         'views/product_template_views.xml',
         'views/maintenance_equipment_views.xml',
         'views/equipment_creation_wizard_views.xml',
