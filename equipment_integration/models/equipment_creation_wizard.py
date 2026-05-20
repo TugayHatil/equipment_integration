@@ -52,26 +52,14 @@ class EquipmentCreationWizard(models.TransientModel):
         # Link equipment to product
         self.product_id.equipment_id = equipment.id
         
-        # Create a simple notification using environment
-        notification = {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': 'Equipment Created',
-                'message': f'Equipment "{equipment.name}" has been created and linked to the product.',
-                'type': 'success',
-                'sticky': False,
-            }
-        }
+        # Add a chatter message to the product as notification
+        self.product_id.message_post(
+            body=f'Equipment "<a href="#" data-oe-model="maintenance.equipment" data-oe-id="{equipment.id}">{equipment.name}</a>" has been created and linked to this product.',
+            message_type='notification'
+        )
         
-        # Return both notification and close action
-        return {
-            'type': 'ir.actions.multi',
-            'actions': [
-                notification,
-                {'type': 'ir.actions.act_window_close'}
-            ]
-        }
+        # Close wizard - this is the most reliable approach
+        return {'type': 'ir.actions.act_window_close'}
 
     def action_cancel(self):
         """Cancel equipment creation"""
