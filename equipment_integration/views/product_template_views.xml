@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='purchase_ok']" position="after">
-                    <field name="is_equipment" widget="boolean_toggle"/>
+                    <field name="is_equipment"/>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
                     <page string="Equipment" attrs="{'invisible': [('is_equipment', '=', False)]}">
@@ -39,7 +39,7 @@
             <field name="inherit_id" ref="product.product_template_tree_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='name']" position="after">
-                    <field name="is_equipment" widget="boolean_toggle"/>
+                    <field name="is_equipment"/>
                     <field name="equipment_id" optional="show"/>
                 </xpath>
             </field>

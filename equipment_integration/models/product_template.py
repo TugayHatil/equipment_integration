@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     is_equipment = fields.Boolean(
-        string='Is Equipment',
+        string='Can be Equipment',
         default=False,
         help='Mark this product as equipment for maintenance tracking'
     )
