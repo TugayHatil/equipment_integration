@@ -37,7 +37,7 @@
                 <div style="margin-top:0px !important;padding:0 30px 10px 70px !important;">
                     <div style="float:left;width:100%;clear:both !important;">
                         <div style="float:left;width:64%;">
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 120px; max-width: 320px;" alt="Logo"/>
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 160px; max-width: 420px;" alt="Logo"/>
                         </div>
                         <div style="float:left;width:36%;">
                             <span t-field="company.name"/><br/>
