@@ -12,4 +12,11 @@
               action="action_referanslar"
               sequence="10"/>
 
+    <!-- CRM > Satış > Müşteriler'in hemen altında sektörler menüsü -->
+    <menuitem id="menu_partner_industry_crm"
+              name="Sektörler"
+              parent="crm.crm_menu_sales"
+              action="base.res_partner_industry_action"
+              sequence="6"/>
+
 </odoo>
