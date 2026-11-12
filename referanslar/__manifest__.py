@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# Copyright © 2026 Projet (https://bulutkobi.io)
+# Part of Projet License. See LICENSE file for full copyright and licensing details.
+
 {
     'name': 'Referanslar',
     'version': '16.0.1.0.0',
@@ -14,9 +17,11 @@ CRM fırsatlarını (crm.lead) referans olarak listeleyen uygulama:
 * Fırsat, Bayi Adı, Sistem Çözümü, Sektör, Yıl, Gelir ve Aşama sütunları
 * crm.lead üzerine "Sektör" alanı (res.partner.industry, Kontaklar/Sektörler)
 * date_deadline alanından otomatik hesaplanan "Yıl" alanı
+* CRM > Satış > Müşteriler altında Sektörler menüsü
+* Seçili kayıtlar için PDF yazdırma çıktısı
     """,
-    'author': 'Tugay Hatil',
-    'website': 'https://github.com/TugayHatil',
+    'author': 'Projet',
+    'website': 'https://bulutkobi.io',
     'license': 'LGPL-3',
     'depends': [
         'crm',
@@ -30,4 +35,5 @@ CRM fırsatlarını (crm.lead) referans olarak listeleyen uygulama:
     'auto_install': False,
     'application': True,
     'sequence': 100,
+    'images': ['static/description/icon.png'],
 }

@@ -15,14 +15,14 @@
                     font-family: 'PF BeauSans Pro Bold';
                     src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927112959BeauSans-Bold.woff') format('woff');
                     font-weight: bold;
-                    font-style: auto;
+                    font-style: normal;
                 }
 
                 body, div, table, th, td, p, h1, h2, h3, span {
                     font-family: 'PF BeauSans Pro' !important;
                 }
                 table.referans-table {
-                    border-spacing: none !important;
+                    border-spacing: 0 !important;
                     border-collapse: collapse !important;
                 }
                 .referans-table, .referans-table th, .referans-table td {
@@ -49,9 +49,9 @@
                                 <span t-field="company.street"/><br/>
                                 <span t-if="company.street2" t-field="company.street2"/><br t-if="company.street2"/>
                                 <span t-field="company.zip"/> <span t-field="company.city"/> / <span t-field="company.state_id.name"/><br/>
-                                <span t-raw="company.country_id.name.upper().replace('I','İ')"/><br/>
+                                <span t-raw="(company.country_id.name or '').upper().replace('I','İ')"/><br/>
                                 <span t-field="company.email"/><br/>
-                                <span t-raw="company.website.replace('https://','').replace('http://','')"/>
+                                <span t-raw="(company.website or '').replace('https://','').replace('http://','')"/>
                             </td>
                         </tr>
                     </table>

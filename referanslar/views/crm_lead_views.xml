@@ -28,8 +28,6 @@
                 <field name="expected_revenue" string="Gelir"
                        widget="monetary" sum="Toplam" optional="show"/>
                 <field name="stage_id" string="Aşama" optional="show"/>
-                <field name="date_deadline" invisible="1"/>
-                <field name="type" invisible="1"/>
             </tree>
         </field>
     </record>
