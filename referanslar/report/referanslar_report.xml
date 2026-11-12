@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="referanslar_report_document">
+        <style>
+            @font-face {
+                font-family: 'PF BeauSans Pro';
+                src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927113233BeauSans-Reg.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'PF BeauSans Pro Bold';
+                src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927112959BeauSans-Bold.woff') format('woff');
+                font-weight: bold;
+                font-style: auto;
+            }
+
+            body, div, table, th, td, p, h1, h2, h3, span {
+                font-family: 'PF BeauSans Pro' !important;
+            }
+            table {
+                border-spacing: none !important;
+                border-collapse: collapse !important;
+            }
+            table, th, td {
+                padding: 6px !important;
+                border: 1px solid #000 !important;
+            }
+        </style>
+        <meta charset="UTF-8"/>
+        <t t-call="web.html_container">
+            <t t-set="company" t-value="docs and docs[0].company_id.sudo() or res_company"/>
+
+            <div class="page">
+                <div style="margin-top:0px !important;padding:0 30px 10px 30px !important;">
+                    <div style="float:left;width:100%;clear:both !important;">
+                        <div style="float:left;width:64%;">
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
+                        </div>
+                        <div style="float:left;width:36%;">
+                            <span t-field="company.name"/><br/>
+                            <span t-field="company.street"/><br/>
+                            <span t-if="company.street2" t-field="company.street2"/><br t-if="company.street2"/>
+                            <span t-field="company.zip"/> <span t-field="company.city"/> / <span t-field="company.state_id.name"/><br/>
+                            <span t-raw="company.country_id.name.upper().replace('I','İ')"/><br/>
+                            <span t-field="company.email"/><br/>
+                            <span t-raw="company.website.replace('https://','').replace('http://','')"/>
+                        </div>
+                    </div>
+
+                    <div style="float:left;width:100%;clear:both !important;margin-top:50px;font-weight:bold;font-size:14.4pt !important;font-family:'PF BeauSans Pro Bold' !important;">
+                        Referanslar
+                    </div>
+
+                    <div style="float:left;width:100%;clear:both !important;margin-top:25px;">
+                        <table style="width:100%;font-size:9pt !important;">
+                            <thead>
+                                <tr style="background:#f6f6f6;">
+                                    <th class="text-center" width="4%">No</th>
+                                    <th class="text-left" width="25%">Fırsat</th>
+                                    <th class="text-left" width="20%">Bayi Adı</th>
+                                    <th class="text-left" width="15%">Sistem Çözümü</th>
+                                    <th class="text-left" width="12%">Sektör</th>
+                                    <th class="text-center" width="6%">Yıl</th>
+                                    <th class="text-right" width="10%">Gelir</th>
+                                    <th class="text-left" width="8%">Aşama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="sira_no" t-value="1"/>
+                                <t t-foreach="docs" t-as="o">
+                                    <tr>
+                                        <td style="text-align:center;" valign="top"><t t-esc="sira_no"/></td>
+                                        <td style="text-align:left;" valign="top"><t t-esc="o.name"/></td>
+                                        <td style="text-align:left;" valign="top"><t t-esc="o.partner_id.name"/></td>
+                                        <td style="text-align:left;" valign="top"><t t-esc="', '.join(o.tag_ids.mapped('name'))"/></td>
+                                        <td style="text-align:left;" valign="top"><t t-esc="o.sektor_id.name"/></td>
+                                        <td style="text-align:center;" valign="top"><t t-esc="o.referans_yil"/></td>
+                                        <td style="text-align:right;" valign="top"><span t-esc="o.expected_revenue" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+                                        <td style="text-align:left;" valign="top"><t t-esc="o.stage_id.name"/></td>
+                                    </tr>
+                                    <t t-set="sira_no" t-value="sira_no + 1"/>
+                                </t>
+                                <tr>
+                                    <td colspan="6" style="text-align:right !important;padding:10px !important;font-size:11pt !important;">
+                                        <strong>Toplam (<t t-esc="company.currency_id.name"/>)</strong>
+                                    </td>
+                                    <td style="text-align:right !important;padding:10px !important;font-size:11pt !important;">
+                                        <strong><span t-esc="sum(docs.mapped('expected_revenue'))" t-options='{"widget": "monetary", "display_currency": company.currency_id}'/></strong>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div t-attf-class="footer o_standard_footer">
+                <div class="text-center" style="line-height:16px;">
+                    <div t-if="report_type == 'pdf'" class="text-muted" style="color:#000 !important;">
+                        Sayfa: <span class="page"/> / <span class="topage"/>
+                    </div>
+                    <span t-field="company.name" style="font-weight:bold !important;"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="action_referanslar_report" model="ir.actions.report">
+        <field name="name">Referanslar</field>
+        <field name="model">crm.lead</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">referanslar.referanslar_report_document</field>
+        <field name="report_file">referanslar.referanslar_report_document</field>
+        <field name="print_report_name">'Referanslar'</field>
+        <field name="binding_model_id" ref="crm.model_crm_lead"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
