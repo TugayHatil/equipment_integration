@@ -44,6 +44,7 @@
                 <field name="partner_id" string="Bayi Adı"/>
                 <field name="tag_ids" string="Sistem Çözümü"/>
                 <field name="sektor_id" string="Sektör"/>
+                <field name="referans_yil" string="Yıl"/>
                 <field name="stage_id" string="Aşama"/>
                 <filter name="filter_won" string="Kazanılan"
                         domain="[('stage_id.is_won', '=', True)]"/>
