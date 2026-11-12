@@ -2,39 +2,39 @@
 <odoo>
 
     <template id="referanslar_report_document">
-        <style>
-            @font-face {
-                font-family: 'PF BeauSans Pro';
-                src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927113233BeauSans-Reg.woff') format('woff');
-                font-weight: normal;
-                font-style: normal;
-            }
-
-            @font-face {
-                font-family: 'PF BeauSans Pro Bold';
-                src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927112959BeauSans-Bold.woff') format('woff');
-                font-weight: bold;
-                font-style: auto;
-            }
-
-            body, div, table, th, td, p, h1, h2, h3, span {
-                font-family: 'PF BeauSans Pro' !important;
-            }
-            table {
-                border-spacing: none !important;
-                border-collapse: collapse !important;
-            }
-            table, th, td {
-                padding: 6px !important;
-                border: 1px solid #000 !important;
-            }
-        </style>
-        <meta charset="UTF-8"/>
         <t t-call="web.html_container">
+            <style>
+                @font-face {
+                    font-family: 'PF BeauSans Pro';
+                    src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927113233BeauSans-Reg.woff') format('woff');
+                    font-weight: normal;
+                    font-style: normal;
+                }
+
+                @font-face {
+                    font-family: 'PF BeauSans Pro Bold';
+                    src: url('https://erp.elva.com.tr/wp-content/uploads/useanyfont/190927112959BeauSans-Bold.woff') format('woff');
+                    font-weight: bold;
+                    font-style: auto;
+                }
+
+                body, div, table, th, td, p, h1, h2, h3, span {
+                    font-family: 'PF BeauSans Pro' !important;
+                }
+                table {
+                    border-spacing: none !important;
+                    border-collapse: collapse !important;
+                }
+                table, th, td {
+                    padding: 6px !important;
+                    border: 1px solid #000 !important;
+                }
+            </style>
+            <meta charset="UTF-8"/>
             <t t-set="company" t-value="docs and docs[0].company_id.sudo() or res_company"/>
 
             <div class="page">
-                <div style="margin-top:0px !important;padding:0 30px 10px 30px !important;">
+                <div style="margin-top:0px !important;padding:0 30px 10px 70px !important;">
                     <div style="float:left;width:100%;clear:both !important;">
                         <div style="float:left;width:64%;">
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
