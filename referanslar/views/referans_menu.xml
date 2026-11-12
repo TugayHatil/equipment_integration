@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Ana sayfada uygulama olarak görünen kök menü -->
+    <menuitem id="menu_referanslar_root"
+              name="Referanslar"
+              sequence="40"/>
+
+    <menuitem id="menu_referanslar_list"
+              name="Referanslar"
+              parent="menu_referanslar_root"
+              action="action_referanslar"
+              sequence="10"/>
+
+    <menuitem id="menu_referanslar_config"
+              name="Yapılandırma"
+              parent="menu_referanslar_root"
+              sequence="90"/>
+
+    <menuitem id="menu_referanslar_sektor"
+              name="Sektörler"
+              parent="menu_referanslar_config"
+              action="action_referans_sektor"
+              sequence="10"/>
+</odoo>
