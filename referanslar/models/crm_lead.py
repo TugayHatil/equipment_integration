@@ -6,7 +6,7 @@ class CrmLead(models.Model):
     _inherit = 'crm.lead'
 
     sektor_id = fields.Many2one(
-        'referans.sektor',
+        'res.partner.industry',
         string='Sektör',
         ondelete='set null',
         tracking=True,

@@ -12,14 +12,4 @@
               action="action_referanslar"
               sequence="10"/>
 
-    <menuitem id="menu_referanslar_config"
-              name="Yapılandırma"
-              parent="menu_referanslar_root"
-              sequence="90"/>
-
-    <menuitem id="menu_referanslar_sektor"
-              name="Sektörler"
-              parent="menu_referanslar_config"
-              action="action_referans_sektor"
-              sequence="10"/>
 </odoo>
