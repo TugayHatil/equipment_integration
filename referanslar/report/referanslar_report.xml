@@ -21,13 +21,17 @@
                 body, div, table, th, td, p, h1, h2, h3, span {
                     font-family: 'PF BeauSans Pro' !important;
                 }
-                table {
+                table.referans-table {
                     border-spacing: none !important;
                     border-collapse: collapse !important;
                 }
-                table, th, td {
+                .referans-table, .referans-table th, .referans-table td {
                     padding: 6px !important;
                     border: 1px solid #000 !important;
+                }
+                table.referans-header, .referans-header td {
+                    border: none !important;
+                    padding: 0 !important;
                 }
             </style>
             <meta charset="UTF-8"/>
@@ -35,27 +39,29 @@
 
             <div class="page">
                 <div style="margin-top:0px !important;padding:0 30px 10px 70px !important;">
-                    <div style="float:left;width:100%;clear:both !important;">
-                        <div style="float:left;width:64%;">
-                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 160px; max-width: 420px;" alt="Logo"/>
-                        </div>
-                        <div style="float:left;width:36%;">
-                            <span t-field="company.name"/><br/>
-                            <span t-field="company.street"/><br/>
-                            <span t-if="company.street2" t-field="company.street2"/><br t-if="company.street2"/>
-                            <span t-field="company.zip"/> <span t-field="company.city"/> / <span t-field="company.state_id.name"/><br/>
-                            <span t-raw="company.country_id.name.upper().replace('I','İ')"/><br/>
-                            <span t-field="company.email"/><br/>
-                            <span t-raw="company.website.replace('https://','').replace('http://','')"/>
-                        </div>
-                    </div>
+                    <table class="referans-header" style="width:100%;">
+                        <tr>
+                            <td style="width:64%;vertical-align:middle;">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 160px; max-width: 420px;" alt="Logo"/>
+                            </td>
+                            <td style="width:36%;vertical-align:middle;">
+                                <span t-field="company.name"/><br/>
+                                <span t-field="company.street"/><br/>
+                                <span t-if="company.street2" t-field="company.street2"/><br t-if="company.street2"/>
+                                <span t-field="company.zip"/> <span t-field="company.city"/> / <span t-field="company.state_id.name"/><br/>
+                                <span t-raw="company.country_id.name.upper().replace('I','İ')"/><br/>
+                                <span t-field="company.email"/><br/>
+                                <span t-raw="company.website.replace('https://','').replace('http://','')"/>
+                            </td>
+                        </tr>
+                    </table>
 
                     <div style="float:left;width:100%;clear:both !important;margin-top:15px;font-weight:bold;font-size:14.4pt !important;font-family:'PF BeauSans Pro Bold' !important;">
                         Referanslar
                     </div>
 
                     <div style="float:left;width:100%;clear:both !important;margin-top:15px;">
-                        <table style="width:100%;font-size:9pt !important;">
+                        <table class="referans-table" style="width:100%;font-size:9pt !important;">
                             <thead>
                                 <tr style="background:#f6f6f6;">
                                     <th class="text-center" width="4%">No</th>
@@ -109,6 +115,19 @@
         </t>
     </template>
 
+    <record id="paperformat_referanslar" model="report.paperformat">
+        <field name="name">Referanslar A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">90</field>
+    </record>
+
     <record id="action_referanslar_report" model="ir.actions.report">
         <field name="name">Referanslar</field>
         <field name="model">crm.lead</field>
@@ -118,6 +137,7 @@
         <field name="print_report_name">'Referanslar'</field>
         <field name="binding_model_id" ref="crm.model_crm_lead"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_referanslar"/>
     </record>
 
 </odoo>
