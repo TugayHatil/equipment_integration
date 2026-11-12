@@ -19,8 +19,7 @@
         <field name="arch" type="xml">
             <tree string="Referanslar">
                 <field name="name" string="Fırsat"/>
-                <field name="x_studio_tedarikci" string="Bayi Adı"
-                       widget="many2many_tags" optional="show"/>
+                <field name="partner_id" string="Bayi Adı" optional="show"/>
                 <field name="tag_ids" string="Sistem Çözümü"
                        widget="many2many_tags" options="{'color_field': 'color'}" optional="show"/>
                 <field name="sektor_id" string="Sektör" optional="show"/>
@@ -42,7 +41,7 @@
         <field name="arch" type="xml">
             <search string="Referans Ara">
                 <field name="name" string="Fırsat"/>
-                <field name="x_studio_tedarikci" string="Bayi Adı"/>
+                <field name="partner_id" string="Bayi Adı"/>
                 <field name="tag_ids" string="Sistem Çözümü"/>
                 <field name="sektor_id" string="Sektör"/>
                 <field name="stage_id" string="Aşama"/>
@@ -56,7 +55,7 @@
                 <filter name="group_by_stage" string="Aşama"
                         context="{'group_by': 'stage_id'}"/>
                 <filter name="group_by_bayi" string="Bayi Adı"
-                        context="{'group_by': 'x_studio_tedarikci'}"/>
+                        context="{'group_by': 'partner_id'}"/>
             </search>
         </field>
     </record>

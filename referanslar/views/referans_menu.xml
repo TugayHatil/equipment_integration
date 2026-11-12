@@ -3,6 +3,7 @@
     <!-- Ana sayfada uygulama olarak görünen kök menü -->
     <menuitem id="menu_referanslar_root"
               name="Referanslar"
+              web_icon="referanslar,static/description/icon.png"
               sequence="40"/>
 
     <menuitem id="menu_referanslar_list"
